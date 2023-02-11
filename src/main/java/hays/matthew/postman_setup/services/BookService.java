@@ -4,7 +4,7 @@ import hays.matthew.postman_setup.domain.Book;
 
 public interface BookService {
 
-    Book addNewBook(Book book);
+    Book addNewBook(Book book, Long authorId);
 
     Iterable<Book> getAll();
 

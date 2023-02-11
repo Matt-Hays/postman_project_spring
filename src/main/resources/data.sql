@@ -1,1 +1,0 @@
-INSERT INTO authors (id, name) VALUES (1L, 'Test Book')

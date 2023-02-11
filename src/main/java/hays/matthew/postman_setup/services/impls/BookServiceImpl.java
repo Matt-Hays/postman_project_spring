@@ -17,19 +17,12 @@ public class BookServiceImpl implements BookService {
     private final AuthorRepository authorRepository;
 
     @Override
-    public Book addNewBook(Book book) {
-        Optional<Author> author = authorRepository.findById(1L);
-        Author auth = null;
-
-        if (author.isPresent()) {
-            auth = author.get();
-        }
-
-        book.setAuthor(auth);
-
-        System.out.println(book);
-
-        return bookRepository.save(book);
+    public Book addNewBook(Book book, Long authorId) {
+        Optional<Author> authorOptional = authorRepository.findById(authorId);
+        if (authorOptional.isPresent()) {
+            book.setAuthor(authorOptional.get());
+            return bookRepository.save(book);
+        } else return null;
     }
 
     @Override

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,10 +23,10 @@ public class Author {
 
     private String name;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author")
     @ToString.Exclude
     @JsonBackReference
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

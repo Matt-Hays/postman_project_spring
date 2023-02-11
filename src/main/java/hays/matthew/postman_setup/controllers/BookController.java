@@ -21,8 +21,8 @@ public class BookController {
 
     @PostMapping
     @ResponseBody
-    public Book addNewBookToAuthor(@RequestBody Book book) {
-        return bookService.addNewBook(book);
+    public Book addNewBookToAuthor(@RequestParam Long authorId, @RequestBody Book book) {
+        return bookService.addNewBook(book, authorId);
     }
 
 }
