@@ -4,7 +4,7 @@ import hays.matthew.postman_setup.domain.Author;
 
 
 public interface AuthorService {
-    public Iterable<Author> getAllAuthors();
+    Iterable<Author> getAllAuthors();
 
-    public Author addNewAuthor(Author author);
+    Author addNewAuthor(Author author);
 }
