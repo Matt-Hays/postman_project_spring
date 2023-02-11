@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @RequiredArgsConstructor
@@ -28,8 +27,13 @@ public class BookServiceImpl implements BookService {
 
         book.setAuthor(auth);
 
-        System.out.println(auth);
+        System.out.println(book);
 
         return bookRepository.save(book);
+    }
+
+    @Override
+    public Iterable<Book> getAll() {
+        return bookRepository.findAll();
     }
 }

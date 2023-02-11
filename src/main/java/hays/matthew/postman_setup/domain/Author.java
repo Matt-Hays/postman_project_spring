@@ -1,11 +1,10 @@
 package hays.matthew.postman_setup.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,16 +15,16 @@ import java.util.Set;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Author implements Serializable {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     @ToString.Exclude
-    @JsonIgnore
+    @JsonBackReference
     private Set<Book> books;
 
     @Override

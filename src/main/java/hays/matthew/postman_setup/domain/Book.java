@@ -1,15 +1,14 @@
 package hays.matthew.postman_setup.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.io.Serial;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "books")
 @Data
-public class Book implements Serializable {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,6 +19,6 @@ public class Book implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
+    @JsonIdentityReference
     private Author author;
-
 }

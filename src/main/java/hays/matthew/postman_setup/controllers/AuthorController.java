@@ -6,18 +6,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/authors")
 public class AuthorController {
     private final AuthorService authorService;
 
     @GetMapping
+    @ResponseBody
     public Iterable<Author> getAuthors() {
         return authorService.getAllAuthors();
     }
 
     @PostMapping
+    @ResponseBody
     public Author createANewAuthor(@RequestBody Author author) {
         return authorService.addNewAuthor(author);
     }
