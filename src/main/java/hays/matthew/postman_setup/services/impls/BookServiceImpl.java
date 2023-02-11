@@ -29,7 +29,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public Iterable<Book> addMultipleBooks(Set<Book> books, Long authorId) {
         Optional<Author> authorOptional = authorRepository.findById(authorId);
-        authorOptional.ifPresent(author -> books.forEach(book -> book.setAuthor(author)));
         if(authorOptional.isPresent()){
             books.forEach(book -> book.setAuthor(authorOptional.get()));
             return bookRepository.saveAll(books);
