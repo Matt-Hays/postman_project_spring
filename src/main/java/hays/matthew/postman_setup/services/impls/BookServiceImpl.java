@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +24,17 @@ public class BookServiceImpl implements BookService {
             book.setAuthor(authorOptional.get());
             return bookRepository.save(book);
         } else return null;
+    }
+
+    @Override
+    public Iterable<Book> addMultipleBooks(Set<Book> books, Long authorId) {
+        Optional<Author> authorOptional = authorRepository.findById(authorId);
+        authorOptional.ifPresent(author -> books.forEach(book -> book.setAuthor(author)));
+        if(authorOptional.isPresent()){
+            books.forEach(book -> book.setAuthor(authorOptional.get()));
+            return bookRepository.saveAll(books);
+        }
+        return null;
     }
 
     @Override

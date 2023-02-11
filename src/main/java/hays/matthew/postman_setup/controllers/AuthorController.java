@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/authors")
@@ -22,5 +24,11 @@ public class AuthorController {
     @ResponseBody
     public Author createANewAuthor(@RequestBody Author author) {
         return authorService.addNewAuthor(author);
+    }
+
+    @PostMapping("/add-authors")
+    @ResponseBody
+    public Iterable<Author> createManyNewAuthors(@RequestBody Set<Author> authors) {
+        return authorService.addManyAuthors(authors);
     }
 }

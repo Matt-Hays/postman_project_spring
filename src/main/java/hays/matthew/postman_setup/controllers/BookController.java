@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/books")
@@ -23,6 +25,12 @@ public class BookController {
     @ResponseBody
     public Book addNewBookToAuthor(@RequestParam Long authorId, @RequestBody Book book) {
         return bookService.addNewBook(book, authorId);
+    }
+
+    @PostMapping("/{authorId}")
+    @ResponseBody
+    public Iterable<Book> addMultipleBooksToAuthor(@PathVariable Long authorId, @RequestBody Set<Book> books){
+        return bookService.addMultipleBooks(books, authorId);
     }
 
 }
